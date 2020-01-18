@@ -7,6 +7,7 @@ export default ()=>{
         <BrowserRouter>
             <Switch>
                 <Route exact path="/" component={HomePage}/>
+                <Route exact path="/client-form" component={HomePage}/>
             </Switch>
         </BrowserRouter>
     );
