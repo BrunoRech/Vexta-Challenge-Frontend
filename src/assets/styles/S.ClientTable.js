@@ -4,6 +4,7 @@ const Table = styled.table`
     width: 100%;
     text-align:center;
     border-collapse:collapse;
+    background-color:#fff;
 `;
 
 const TableHeader = styled.th`
@@ -18,6 +19,9 @@ const TableBody = styled.tbody`
 
 const TableRow = styled.tr`
     cursor:pointer;
+    &:hover{
+        background-color: #ff2;
+    }
 `;
 
 const TableElement = styled.td`

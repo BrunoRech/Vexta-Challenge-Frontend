@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import api from '../services/api';
 import ClientTable from '../components/ClientTable';
-import { Container } from '../assets/styles/S.HomePage';
+import { Container, ImageContainer } from '../assets/styles/S.HomePage';
 import ClientForm from '../components/ClientForm';
+
 
 export default () => {
 
     const [clientes, setClientes] = useState([]);
     const [selectedClient, setSelectedClient] = useState({});
-    const [openForm, SetFormOpen] = useState(true);
+    const [openForm, SetFormOpen] = useState(false);
 
     const handleRowClick = client => {
         setSelectedClient(client);
@@ -25,14 +26,16 @@ export default () => {
     }, []);
 
     return (
-        <Container>
-            {
-                openForm ?
-                    <ClientForm client={selectedClient} />
-                    :
-                    <ClientTable data={clientes} handleRowClick={handleRowClick} />
-            }
+        <ImageContainer>
+            <Container>
+                {
+                    openForm ?
+                        <ClientForm client={selectedClient} SetFormOpen={SetFormOpen} />
+                        :
+                        <ClientTable data={clientes} handleRowClick={handleRowClick} />
+                }
 
-        </Container>
+            </Container>
+        </ImageContainer>
     );
 }

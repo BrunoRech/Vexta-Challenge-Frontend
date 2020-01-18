@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import api from '../services/api';
-import { ActionButton, ClientForm, ClientInput, InputLabel, CityCombobox, CityOption } from '../assets/styles/S.ClientForm';
+import { BackButton, DeleteButton, SaveButton, ClientForm, Container, ClientInput, InputLabel, CityCombobox, CityOption } from '../assets/styles/S.ClientForm';
 
-export default ({ client }) => {
+export default ({ client, SetFormOpen }) => {
 
     const [clientData, setClientData] = useState({ ...client });
     const [cities, setCities] = useState([]);
@@ -31,7 +31,12 @@ export default ({ client }) => {
 
     return (
         <>
-            <ActionButton>Voltar</ActionButton>
+            <BackButton
+                onClick={() => SetFormOpen(false)}
+            >
+                Voltar
+            </BackButton>
+            <Container>
             <ClientForm onSubmit={handleSubmit}>
                 <InputLabel>Nome</InputLabel>
                 <ClientInput
@@ -64,9 +69,9 @@ export default ({ client }) => {
                     ))}
                 </CityCombobox>
             </ClientForm>
-
-            <ActionButton>Excluir</ActionButton>
-            <ActionButton>Cadastrar</ActionButton>
+                <DeleteButton>Excluir</DeleteButton>
+                <SaveButton>Salvar</SaveButton>
+            </Container>
         </>
     );
 }
