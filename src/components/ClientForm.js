@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import api from '../services/api';
-import { ClientForm, ClientInput, InputLabel, CityCombobox, CityOption } from '../assets/styles/S.ClientForm';
+import { BackButton, DeleteButton, SaveButton, Container, ClientInput, InputLabel, CityCombobox, CityOption } from '../assets/styles/S.ClientForm';
 
-export default ({ client }) => {
+export default ({ client, SetFormOpen }) => {
 
     const [clientData, setClientData] = useState({ ...client });
     const [cities, setCities] = useState([]);
@@ -17,21 +17,36 @@ export default ({ client }) => {
     }, []);
 
 
-    const handleSubmit = () => {
+    const handleSave = async () => {
+        if (client) {
+            const { data } = await api.put(`/clientes/${client.id}`, { ...clientData });
+            return;
+        }
+        const { data } = await api.post('/clientes', clientData);
 
     };
+
+    const handleDelete = async () => {
+        if (client) {
+            await api.delete(`/clientes/${client.id}`);
+        }
+    }
 
     const handleChange = event => {
         const { name, value } = event.target;
         const newClient = { ...clientData }
         newClient[name] = value;
         setClientData(newClient);
-        console.log(newClient)
     }
 
     return (
         <>
-            <ClientForm onSubmit={handleSubmit}>
+            <BackButton
+                onClick={() => SetFormOpen(false)}
+            >
+                Voltar
+            </BackButton>
+            <Container>
                 <InputLabel>Nome</InputLabel>
                 <ClientInput
                     onChange={handleChange}
@@ -56,13 +71,24 @@ export default ({ client }) => {
                 <InputLabel>Municipio</InputLabel>
                 <CityCombobox
                     onChange={handleChange}
-                    name="municipio"
+                    name="municipio_id"
+                    value={clientData ? clientData.municipio.id : 0}
                 >
                     {cities.map(city => (
-                        <CityOption value={city.id}>{city.nome} - {city.estado}</CityOption>
+                        <CityOption key={city.id} value={city.id}>{city.nome} - {city.estado}</CityOption>
                     ))}
                 </CityCombobox>
-            </ClientForm>
+                <DeleteButton
+                    onClick={handleDelete}
+                >
+                    Excluir
+                </DeleteButton>
+                <SaveButton
+                    onClick={handleSave}
+                >
+                    Salvar
+                </SaveButton>
+            </Container>
         </>
     );
 }

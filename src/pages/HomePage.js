@@ -1,30 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import api from '../services/api';
+import React, { useState } from 'react';
 import ClientTable from '../components/ClientTable';
-import { Container } from '../assets/styles/S.HomePage';
-
+import { Container, ImageContainer } from '../assets/styles/S.HomePage';
 import ClientForm from '../components/ClientForm';
 
-export default ({history}) => {
 
-    const [clientes, setClientes] = useState([]);
+export default () => {
+
+    
+    const [selectedClient, setSelectedClient] = useState({});
+    const [openForm, SetFormOpen] = useState(false);
 
     const handleRowClick = client => {
-        history.push('/client-form');
+        setSelectedClient(client);
+        SetFormOpen(true);
     };
 
-    useEffect(() => {
-        const fetchClientes = async () => {
-            const { data } = await api.get('/clientes')
-            setClientes(data);
-        }
-
-        fetchClientes();
-    }, []);
-
     return (
-        <Container>
-            <ClientTable data={clientes} handleRowClick={handleRowClick}/>
-        </Container>
+        <ImageContainer>
+            <Container>
+                {
+                    openForm ?
+                        <ClientForm client={selectedClient} SetFormOpen={SetFormOpen} />
+                        :
+                        <ClientTable handleRowClick={handleRowClick} />
+                }
+
+            </Container>
+        </ImageContainer>
     );
 }
