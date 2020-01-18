@@ -2,15 +2,17 @@ import React, { useState, useEffect } from 'react';
 import api from '../services/api';
 import ClientTable from '../components/ClientTable';
 import { Container } from '../assets/styles/S.HomePage';
-
 import ClientForm from '../components/ClientForm';
 
-export default ({history}) => {
+export default () => {
 
     const [clientes, setClientes] = useState([]);
+    const [selectedClient, setSelectedClient] = useState({});
+    const [openForm, SetFormOpen] = useState(true);
 
     const handleRowClick = client => {
-        history.push('/client-form');
+        setSelectedClient(client);
+        SetFormOpen(true);
     };
 
     useEffect(() => {
@@ -24,7 +26,13 @@ export default ({history}) => {
 
     return (
         <Container>
-            <ClientTable data={clientes} handleRowClick={handleRowClick}/>
+            {
+                openForm ?
+                    <ClientForm client={selectedClient} />
+                    :
+                    <ClientTable data={clientes} handleRowClick={handleRowClick} />
+            }
+
         </Container>
     );
 }

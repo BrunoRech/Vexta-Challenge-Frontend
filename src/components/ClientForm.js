@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import api from '../services/api';
-import { ClientForm, ClientInput, InputLabel, CityCombobox, CityOption } from '../assets/styles/S.ClientForm';
+import { ActionButton, ClientForm, ClientInput, InputLabel, CityCombobox, CityOption } from '../assets/styles/S.ClientForm';
 
 export default ({ client }) => {
 
@@ -31,6 +31,7 @@ export default ({ client }) => {
 
     return (
         <>
+            <ActionButton>Voltar</ActionButton>
             <ClientForm onSubmit={handleSubmit}>
                 <InputLabel>Nome</InputLabel>
                 <ClientInput
@@ -59,10 +60,13 @@ export default ({ client }) => {
                     name="municipio"
                 >
                     {cities.map(city => (
-                        <CityOption value={city.id}>{city.nome} - {city.estado}</CityOption>
+                        <CityOption key={city.id} value={city.id}>{city.nome} - {city.estado}</CityOption>
                     ))}
                 </CityCombobox>
             </ClientForm>
+
+            <ActionButton>Excluir</ActionButton>
+            <ActionButton>Cadastrar</ActionButton>
         </>
     );
 }
