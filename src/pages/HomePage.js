@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../services/api';
+import ClientTable from '../components/ClientTable';
+import ClientForm from '../components/ClientForm';
 
 export default () => {
 
@@ -16,8 +18,9 @@ export default () => {
     }, []);
 
     return (
-        <div>
-            ushauhsuhass
-        </div>
+        <>
+            <ClientTable data={clientes} />
+            <ClientForm/>
+        </>
     );
 }
