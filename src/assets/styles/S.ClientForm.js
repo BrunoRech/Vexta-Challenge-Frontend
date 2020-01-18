@@ -11,10 +11,6 @@ const ClientInput = styled.input`
     padding: 2px;
 `;
 
-const ClientForm = styled.form`
-
-`;
-
 const InputLabel = styled.label`
     display:block;
     width: 100%;
@@ -52,7 +48,7 @@ const BaseButton = styled.button`
 `;
 
 const BackButton = styled(BaseButton)`
-    border: 2px solid #42a4ff;
+    border: 3px solid #42a4ff;
     color: #42a4ff;
     &:hover{
         background-color: #42a4ff;
@@ -60,7 +56,7 @@ const BackButton = styled(BaseButton)`
     }
 `;
 const DeleteButton = styled(BaseButton)`
-    border: 2px solid #ff8a42;
+    border: 3px solid #ff8a42;
     color: #ff8a42;
     &:hover{
         background-color: #ff8a42;
@@ -68,7 +64,7 @@ const DeleteButton = styled(BaseButton)`
     }
 `;
 const SaveButton = styled(BaseButton)`
-    border: 2px solid #74ff42;
+    border: 3px solid #74ff42;
     color: #74ff42;
     &:hover{
         background-color: #74ff42;
@@ -83,4 +79,4 @@ const Container = styled.div`
     margin:auto;
 `;
 
-export { Container, ClientInput, BackButton, DeleteButton, SaveButton, ClientForm, InputLabel, CityCombobox, CityOption }
+export { Container, ClientInput, BackButton, DeleteButton, SaveButton, InputLabel, CityCombobox, CityOption }

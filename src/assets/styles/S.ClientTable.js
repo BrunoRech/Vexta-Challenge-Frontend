@@ -5,6 +5,7 @@ const Table = styled.table`
     text-align:center;
     border-collapse:collapse;
     background-color:#fff;
+    min-height:400px;
 `;
 
 const TableHeader = styled.th`
@@ -13,20 +14,17 @@ const TableHeader = styled.th`
     padding: 2px;
 `;
 
-const TableBody = styled.tbody`
-
-`;
-
 const TableRow = styled.tr`
     cursor:pointer;
     &:hover{
-        background-color: #ff2;
+        background-color: #dbdbdb;
     }
 `;
 
 const TableElement = styled.td`
     border: 3px solid #dddd;
     padding: 5px;
+    height: 35px;
 `;
 
 const TableText = styled.span`
@@ -36,10 +34,11 @@ const TableText = styled.span`
 
 const TableInput = styled.input`
     width: 100%;
-    height: 100%;
-    border: 0;
+    height: 50px;
+    border: 0 ;
     font-size: 18px;
     text-align: center;
+    outline:none;
 `;
 
-export { Table, TableInput, TableBody, TableHeader, TableElement, TableRow, TableText };
+export { Table, TableInput, TableHeader, TableElement, TableRow, TableText };

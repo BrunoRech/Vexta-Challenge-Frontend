@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import api from '../services/api';
-import { BackButton, DeleteButton, SaveButton, ClientForm, Container, ClientInput, InputLabel, CityCombobox, CityOption } from '../assets/styles/S.ClientForm';
+import { BackButton, DeleteButton, SaveButton, Container, ClientInput, InputLabel, CityCombobox, CityOption } from '../assets/styles/S.ClientForm';
 
 export default ({ client, SetFormOpen }) => {
 
@@ -17,16 +17,26 @@ export default ({ client, SetFormOpen }) => {
     }, []);
 
 
-    const handleSubmit = () => {
+    const handleSave = async () => {
+        if (client) {
+            const { data } = await api.put(`/clientes/${client.id}`, { ...clientData });
+            return;
+        }
+        const { data } = await api.post('/clientes', clientData);
 
     };
+
+    const handleDelete = async () => {
+        if (client) {
+            await api.delete(`/clientes/${client.id}`);
+        }
+    }
 
     const handleChange = event => {
         const { name, value } = event.target;
         const newClient = { ...clientData }
         newClient[name] = value;
         setClientData(newClient);
-        console.log(newClient)
     }
 
     return (
@@ -37,7 +47,6 @@ export default ({ client, SetFormOpen }) => {
                 Voltar
             </BackButton>
             <Container>
-            <ClientForm onSubmit={handleSubmit}>
                 <InputLabel>Nome</InputLabel>
                 <ClientInput
                     onChange={handleChange}
@@ -62,15 +71,23 @@ export default ({ client, SetFormOpen }) => {
                 <InputLabel>Municipio</InputLabel>
                 <CityCombobox
                     onChange={handleChange}
-                    name="municipio"
+                    name="municipio_id"
+                    value={clientData ? clientData.municipio.id : 0}
                 >
                     {cities.map(city => (
                         <CityOption key={city.id} value={city.id}>{city.nome} - {city.estado}</CityOption>
                     ))}
                 </CityCombobox>
-            </ClientForm>
-                <DeleteButton>Excluir</DeleteButton>
-                <SaveButton>Salvar</SaveButton>
+                <DeleteButton
+                    onClick={handleDelete}
+                >
+                    Excluir
+                </DeleteButton>
+                <SaveButton
+                    onClick={handleSave}
+                >
+                    Salvar
+                </SaveButton>
             </Container>
         </>
     );
