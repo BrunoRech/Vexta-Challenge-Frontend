@@ -45,7 +45,9 @@ const BaseButton = styled.button`
     border-radius: 5px;
     font-size: 20px;
     font-weight: bold;
-
+    &:hover{
+        cursor:pointer;
+    }
 `;
 
 const BackButton = styled(BaseButton)`
@@ -84,4 +86,22 @@ const Container = styled.div`
     border-radius:5px;
 `;
 
-export { Container, ClientInput, BackButton, DeleteButton, SaveButton, InputLabel, CityCombobox, CityOption }
+const CnpjContainer = styled.div`
+    position:relative;
+`;
+
+const CnpjButton = styled.button`
+    position: absolute;
+    top:3px;
+    right:1px;
+    height:40px;
+    width:80px;
+    border: none;
+    border-radius:7px;
+    font-weight:bold;
+    &:hover{
+        cursor:pointer;
+    }
+`;
+
+export { CnpjButton, CnpjContainer, Container, ClientInput, BackButton, DeleteButton, SaveButton, InputLabel, CityCombobox, CityOption }

@@ -85,7 +85,9 @@ export default ({ handleRowClick }) => {
                             onClick={() => handleRowClick(null)}
                         >
                             <TableText>
-                                Adicionar novo Cliente
+                                <strong>
+                                    Adicionar novo Cliente
+                                </strong>
                             </TableText>
                         </TableElement>
                     </TableRow>
