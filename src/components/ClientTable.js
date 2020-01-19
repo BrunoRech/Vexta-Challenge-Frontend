@@ -84,7 +84,9 @@ export default ({ handleRowClick }) => {
                             colSpan={4}
                             onClick={() => handleRowClick(null)}
                         >
-                            +
+                            <TableText>
+                                Adicionar novo Cliente
+                            </TableText>
                         </TableElement>
                     </TableRow>
                     {clients.length > 0 ? clients.map((client => (

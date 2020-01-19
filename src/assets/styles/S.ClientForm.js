@@ -24,6 +24,7 @@ const CityCombobox = styled.select`
     height: 44px;
     border-radius: 5px;
     display: block;
+    font-weight: bold;
     border: solid 1px #ddd;
     margin: 10px 0px 30px 0px;
     background-color: #fff;
@@ -64,10 +65,10 @@ const DeleteButton = styled(BaseButton)`
     }
 `;
 const SaveButton = styled(BaseButton)`
-    border: 3px solid #74ff42;
-    color: #74ff42;
+    border: 3px solid #89d470;
+    color: #89d470;
     &:hover{
-        background-color: #74ff42;
+        background-color: #89d470;
         color:#fff;
     }
     float:right;
@@ -77,6 +78,10 @@ const SaveButton = styled(BaseButton)`
 const Container = styled.div`
     width:50%;
     margin:auto;
+    padding: 35px;
+    background-color: #fff;
+    border: 1px solid #fff;
+    border-radius:5px;
 `;
 
 export { Container, ClientInput, BackButton, DeleteButton, SaveButton, InputLabel, CityCombobox, CityOption }

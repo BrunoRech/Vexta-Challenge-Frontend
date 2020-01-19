@@ -41,12 +41,12 @@ export default ({ client, SetFormOpen }) => {
 
     return (
         <>
+            <Container>
             <BackButton
                 onClick={() => SetFormOpen(false)}
             >
                 Voltar
             </BackButton>
-            <Container>
                 <InputLabel>Nome</InputLabel>
                 <ClientInput
                     onChange={handleChange}
@@ -72,7 +72,7 @@ export default ({ client, SetFormOpen }) => {
                 <CityCombobox
                     onChange={handleChange}
                     name="municipio_id"
-                    value={clientData ? clientData.municipio.id : 0}
+                    value={clientData.municipio_id ? clientData.municipio_id : clientData.municipio.id}
                 >
                     {cities.map(city => (
                         <CityOption key={city.id} value={city.id}>{city.nome} - {city.estado}</CityOption>

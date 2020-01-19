@@ -9,7 +9,7 @@ const Table = styled.table`
 `;
 
 const TableHeader = styled.th`
-    border: 3px solid #dddd;
+    border: 1px solid #000;
     height: 50px;
     padding: 2px;
 `;
@@ -17,12 +17,12 @@ const TableHeader = styled.th`
 const TableRow = styled.tr`
     cursor:pointer;
     &:hover{
-        background-color: #dbdbdb;
+        background-color: #ebebeb;
     }
 `;
 
 const TableElement = styled.td`
-    border: 3px solid #dddd;
+    border: 1px solid #000;
     padding: 5px;
     height: 35px;
 `;
