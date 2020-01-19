@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import background from '../images/background2.jpg';
+import background from '../images/background.jpg';
 
 const Container = styled.div`
     width: 80%;
