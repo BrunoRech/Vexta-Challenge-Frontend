@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table, TableInput, TableHeader, TableElement, TableRow, TableText } from '../assets/styles/S.ClientTable';
+import { Table, Container, TableInput, TableHeader, TableElement, TableRow, TableText } from '../assets/styles/S.ClientTable';
 import api from '../services/api';
 
 export default ({ handleRowClick }) => {
@@ -38,7 +38,7 @@ export default ({ handleRowClick }) => {
     }, []);
 
     return (
-        <>
+        <Container>
             <Table>
                 <tbody>
                     <tr>
@@ -113,6 +113,6 @@ export default ({ handleRowClick }) => {
                         )}
                 </tbody>
             </Table>
-        </>
+        </Container>
     )
 }

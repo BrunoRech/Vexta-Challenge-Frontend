@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import api from '../services/api';
 import { BackButton, DeleteButton, SaveButton, Container, ClientInput, InputLabel, CityCombobox, CityOption } from '../assets/styles/S.ClientForm';
 
@@ -18,17 +19,24 @@ export default ({ client, SetFormOpen }) => {
 
 
     const handleSave = async () => {
+        let response;
         if (client) {
-            const { data } = await api.put(`/clientes/${client.id}`, { ...clientData });
-            return;
+            response = await api.put(`/clientes/${client.id}`, { ...clientData });
+        } else {
+            response = await api.post('/clientes', clientData);
         }
-        const { data } = await api.post('/clientes', clientData);
+        const { error } = response.data;
+        if (error) {
+            return toast.error(error);
+        }
+        return toast.success('Cliente salvo com sucesso');
 
     };
 
     const handleDelete = async () => {
         if (client) {
             await api.delete(`/clientes/${client.id}`);
+            return toast.success('Cliente deletado com sucesso');
         }
     }
 
@@ -42,10 +50,10 @@ export default ({ client, SetFormOpen }) => {
     return (
         <>
             <Container>
-            <BackButton
-                onClick={() => SetFormOpen(false)}
-            >
-                Voltar
+                <BackButton
+                    onClick={() => SetFormOpen(false)}
+                >
+                    Voltar
             </BackButton>
                 <InputLabel>Nome</InputLabel>
                 <ClientInput
@@ -72,7 +80,7 @@ export default ({ client, SetFormOpen }) => {
                 <CityCombobox
                     onChange={handleChange}
                     name="municipio_id"
-                    value={clientData.municipio_id ? clientData.municipio_id : clientData.municipio.id}
+                    value={clientData.municipio_id ? clientData.municipio_id : ''}
                 >
                     {cities.map(city => (
                         <CityOption key={city.id} value={city.id}>{city.nome} - {city.estado}</CityOption>

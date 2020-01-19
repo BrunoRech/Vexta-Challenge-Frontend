@@ -5,13 +5,19 @@ const Table = styled.table`
     text-align:center;
     border-collapse:collapse;
     background-color:#fff;
-    min-height:400px;
 `;
 
 const TableHeader = styled.th`
     border: 1px solid #000;
-    height: 50px;
+    height: 50px !important;
     padding: 2px;
+`;
+
+const Container = styled.div`
+    min-height:400px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
 `;
 
 const TableRow = styled.tr`
@@ -41,4 +47,4 @@ const TableInput = styled.input`
     outline:none;
 `;
 
-export { Table, TableInput, TableHeader, TableElement, TableRow, TableText };
+export { Container, Table, TableInput, TableHeader, TableElement, TableRow, TableText };
