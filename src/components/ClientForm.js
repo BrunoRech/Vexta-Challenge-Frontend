@@ -4,8 +4,12 @@ import api from '../services/api';
 import { CnpjButton, CnpjContainer, BackButton, DeleteButton, SaveButton, Container, ClientInput, InputLabel, CityCombobox, CityOption } from '../assets/styles/S.ClientForm';
 
 export default ({ client, SetFormOpen }) => {
-
-    const [clientData, setClientData] = useState({ ...client });
+    const [clientData, setClientData] = useState(client ? { ...client } : {
+        nome: '',
+        endereco: '',
+        municipio_id: 0,
+        cnpj: '',
+    });
     const [cities, setCities] = useState([]);
     const [isLoading, setLoading] = useState(false);
 
@@ -103,6 +107,7 @@ export default ({ client, SetFormOpen }) => {
                         value={clientData ? clientData.cnpj : ''}
                         name="cnpj"
                         type="text"
+                        placeholder="Apenas números"
                     />
                     <CnpjButton
                         onClick={handleFindCpnj}
